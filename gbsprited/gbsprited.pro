@@ -20,16 +20,22 @@ SOURCES += main.cpp\
     newimagedialog.cpp \
     sprite.cpp \
     cppspriteexporter.cpp \
+    binaryspriteexporter.cpp \
+    gbspriteexporter.cpp \
     spriteexporter.cpp \
-    binaryspriteexporter.cpp
+    customspriteexporter.cpp \
+    spriteimporter.cpp
 
 HEADERS  += mainwindow.h \
     drawingcanvas.h \
     newimagedialog.h \
     sprite.h \
     cppspriteexporter.h \
+    binaryspriteexporter.h \
+    gbspriteexporter.h \
     spriteexporter.h \
-    binaryspriteexporter.h
+    customspriteexporter.h \
+    spriteimporter.h
 
 FORMS    += mainwindow.ui \
     newimagedialog.ui
