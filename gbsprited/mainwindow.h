@@ -23,6 +23,7 @@ public:
 private slots:
 	void on_actionNew_triggered();
 	void on_actionC_triggered();
+	void on_actionBinary_triggered();
 	void setColor0();
 	void setColor1();
 	void setColor2();

@@ -5,6 +5,7 @@
 #include "ui_mainwindow.h"
 #include "drawingcanvas.h"
 #include "cppspriteexporter.h"
+#include "binaryspriteexporter.h"
 
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
@@ -41,6 +42,13 @@ void MainWindow::on_actionC_triggered()
 	QString str = QFileDialog::getSaveFileName();
 	CppSpriteExporter cse( ui->canvasWidget->getSprite(), str );
 	cse.run();
+}
+
+void MainWindow::on_actionBinary_triggered()
+{
+	QString str = QFileDialog::getSaveFileName();
+	BinarySpriteExporter bse( ui->canvasWidget->getSprite(), str );
+	bse.run();
 }
 
 void MainWindow::setColor0()
