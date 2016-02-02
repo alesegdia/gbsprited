@@ -16,7 +16,6 @@ public:
 	void newTile() override;
 
 private:
-	QSharedPointer<Sprite> m_sprite;
 	QFile m_file;
 	QTextStream m_stream;
 
