@@ -6,6 +6,8 @@
 #include "drawingcanvas.h"
 #include "cppspriteexporter.h"
 #include "binaryspriteexporter.h"
+#include "customspriteexporter.h"
+#include "spriteimporter.h"
 
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
@@ -19,11 +21,12 @@ MainWindow::MainWindow(QWidget *parent) :
 	this->m_newImageDialog->setSprite(ui->canvasWidget->getSprite());
 
 	QWidget::connect(m_newImageDialog, SIGNAL(spriteSizeChanged()), ui->canvasWidget, SLOT(repaint()));
+	QWidget::connect(ui->verticalSlider, SIGNAL(valueChanged(int)), ui->canvasWidget, SLOT(scaleChanged(int)));
 
-	QWidget::connect(ui->color0btn, SIGNAL(pressed()), this, SLOT(setColor0()));
-	QWidget::connect(ui->color1btn, SIGNAL(pressed()), this, SLOT(setColor1()));
-	QWidget::connect(ui->color2btn, SIGNAL(pressed()), this, SLOT(setColor2()));
-	QWidget::connect(ui->color3btn, SIGNAL(pressed()), this, SLOT(setColor3()));
+	QWidget::connect(ui->color0btn, SIGNAL(pressed()), ui->canvasWidget, SLOT(setColor0()));
+	QWidget::connect(ui->color1btn, SIGNAL(pressed()), ui->canvasWidget, SLOT(setColor1()));
+	QWidget::connect(ui->color2btn, SIGNAL(pressed()), ui->canvasWidget, SLOT(setColor2()));
+	QWidget::connect(ui->color3btn, SIGNAL(pressed()), ui->canvasWidget, SLOT(setColor3()));
 
 }
 
@@ -51,23 +54,17 @@ void MainWindow::on_actionBinary_triggered()
 	bse.run();
 }
 
-void MainWindow::setColor0()
+void MainWindow::on_actionGBSpritedExport_triggered()
 {
-	ui->canvasWidget->setColor(0);
+	QString str = QFileDialog::getSaveFileName();
+	CustomSpriteExporter cse( ui->canvasWidget->getSprite(), str );
+	cse.run();
 }
 
-void MainWindow::setColor1()
+void MainWindow::on_actionGBSpritedImport_triggered()
 {
-	ui->canvasWidget->setColor(1);
-}
-
-void MainWindow::setColor2()
-{
-	ui->canvasWidget->setColor(2);
-}
-
-void MainWindow::setColor3()
-{
-	ui->canvasWidget->setColor(3);
+	QString str = QFileDialog::getOpenFileName();
+	SpriteImporter si( ui->canvasWidget->getSprite(), str );
+	si.run();
 }
 

@@ -8,6 +8,11 @@ DrawingCanvas::DrawingCanvas(QWidget* p)
 	m_sprite->reset(8, 8);
 }
 
+DrawingCanvas::~DrawingCanvas()
+{
+
+}
+
 QSharedPointer<Sprite> DrawingCanvas::getSprite()
 {
 	return m_sprite;
@@ -85,9 +90,35 @@ void DrawingCanvas::plotPixel(QVector2D click_pos)
 
 	if( rx < m_sprite->width() && ry < m_sprite->height() && rx >= 0 && ry >= 0 )
 	{
-		qDebug() << m_selectedColor;
 		m_sprite->plot(rx, ry, m_selectedColor);
 		repaint();
 	}
 }
+
+void DrawingCanvas::scaleChanged(int new_scale)
+{
+	m_scale = new_scale;
+	repaint();
+}
+
+void DrawingCanvas::setColor0()
+{
+	setColor(0);
+}
+
+void DrawingCanvas::setColor1()
+{
+	setColor(1);
+}
+
+void DrawingCanvas::setColor2()
+{
+	setColor(2);
+}
+
+void DrawingCanvas::setColor3()
+{
+	setColor(3);
+}
+
 

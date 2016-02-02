@@ -13,8 +13,12 @@
 
 class DrawingCanvas : public QWidget
 {
+	Q_OBJECT
+
 public:
-	DrawingCanvas(QWidget* p);
+	explicit DrawingCanvas(QWidget* p = 0);
+	~DrawingCanvas();
+
 	QSharedPointer<Sprite> getSprite();
 	void setColor( uint8_t color );
 
@@ -27,6 +31,12 @@ protected:
 
 	void plotPixel( QVector2D click_pos );
 
+public slots:
+	void scaleChanged( int new_scale );
+	void setColor0();
+	void setColor1();
+	void setColor2();
+	void setColor3();
 
 private:
 	QSharedPointer<Sprite> m_sprite;

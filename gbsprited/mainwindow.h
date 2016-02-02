@@ -24,10 +24,9 @@ private slots:
 	void on_actionNew_triggered();
 	void on_actionC_triggered();
 	void on_actionBinary_triggered();
-	void setColor0();
-	void setColor1();
-	void setColor2();
-	void setColor3();
+	void on_actionGBSpritedExport_triggered();
+	void on_actionGBSpritedImport_triggered();
+
 
 private:
 	Ui::MainWindow *ui;
