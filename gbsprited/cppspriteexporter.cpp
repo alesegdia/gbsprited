@@ -3,18 +3,23 @@
 #include <QFile>
 #include <QTextStream>
 
-CppSpriteExporter::CppSpriteExporter( QSharedPointer<Sprite> sprite )
+CppSpriteExporter::CppSpriteExporter( QSharedPointer<Sprite> sprite, QString outfile )
+	: SpriteExporter(sprite), m_file(outfile)
 {
-	m_sprite = sprite;
+	if( m_file.open(QIODevice::ReadWrite) )
+	{
+		m_stream.setDevice(&m_file);
+	}
 }
 
-void CppSpriteExporter::xport(QString outfile)
+void CppSpriteExporter::bytesAdded(uint8_t first_byte, uint8_t second_byte)
 {
-	QFile file(outfile);
-	if( file.open(QIODevice::ReadWrite) )
-	{
-		QTextStream stream(&file);
-		stream << "mehhh";
-	}
+	m_stream << "0x" << QString::number(first_byte, 16)  << ", ";
+	m_stream << "0x" << QString::number(second_byte, 16) << ", ";
+}
+
+void CppSpriteExporter::newTile()
+{
+	m_stream << "\n";
 }
 

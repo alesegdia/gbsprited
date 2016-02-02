@@ -1,21 +1,24 @@
 #ifndef CPPSPRITEEXPORTER_H
 #define CPPSPRITEEXPORTER_H
 
-#include <QSharedPointer>
 #include <QString>
+#include <QFile>
+#include <QTextStream>
 
-#include "sprite.h"
-#include "ispriteexporter.h"
+#include "spriteexporter.h"
 
-class CppSpriteExporter : public ISpriteExporter
+class CppSpriteExporter : public SpriteExporter
 {
 public:
-	CppSpriteExporter( QSharedPointer<Sprite> sprite );
+	CppSpriteExporter( QSharedPointer<Sprite> sprite, QString outfile );
 
-	void xport( QString outfile ) override;
+	void bytesAdded(uint8_t first_byte, uint8_t second_byte) override;
+	void newTile() override;
 
 private:
 	QSharedPointer<Sprite> m_sprite;
+	QFile m_file;
+	QTextStream m_stream;
 
 };
 
