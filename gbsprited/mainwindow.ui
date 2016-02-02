@@ -73,6 +73,38 @@
          </property>
         </widget>
        </item>
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QSlider" name="verticalSlider">
+         <property name="sizeIncrement">
+          <size>
+           <width>0</width>
+           <height>4</height>
+          </size>
+         </property>
+         <property name="minimum">
+          <number>5</number>
+         </property>
+         <property name="maximum">
+          <number>50</number>
+         </property>
+         <property name="singleStep">
+          <number>5</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Scale</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>
@@ -103,9 +135,17 @@
     </property>
     <addaction name="actionC"/>
     <addaction name="actionBinary"/>
+    <addaction name="actionGBSpritedExport"/>
+   </widget>
+   <widget class="QMenu" name="menuImport">
+    <property name="title">
+     <string>Import</string>
+    </property>
+    <addaction name="actionGBSpritedImport"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuExport"/>
+   <addaction name="menuImport"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -133,7 +173,17 @@
   </action>
   <action name="actionBinary">
    <property name="text">
-    <string>GB Packed (binary)</string>
+    <string>GB Binary</string>
+   </property>
+  </action>
+  <action name="actionGBSpritedExport">
+   <property name="text">
+    <string>GBSprited</string>
+   </property>
+  </action>
+  <action name="actionGBSpritedImport">
+   <property name="text">
+    <string>GBSprited</string>
    </property>
   </action>
  </widget>
@@ -144,6 +194,9 @@
    <extends>QWidget</extends>
    <header>drawingcanvas.h</header>
    <container>1</container>
+   <slots>
+    <slot>scaleChanged(int)</slot>
+   </slots>
   </customwidget>
  </customwidgets>
  <resources/>
