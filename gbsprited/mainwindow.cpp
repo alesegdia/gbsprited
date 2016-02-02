@@ -39,8 +39,8 @@ void MainWindow::on_actionNew_triggered()
 void MainWindow::on_actionC_triggered()
 {
 	QString str = QFileDialog::getSaveFileName();
-	CppSpriteExporter cse( ui->canvasWidget->getSprite() );
-	cse.xport(str);
+	CppSpriteExporter cse( ui->canvasWidget->getSprite(), str );
+	cse.run();
 }
 
 void MainWindow::setColor0()
