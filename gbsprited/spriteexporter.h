@@ -1,21 +1,17 @@
 #ifndef SPRITEEXPORTER_H
 #define SPRITEEXPORTER_H
 
-#include <QString>
 #include <QSharedPointer>
-
 #include "sprite.h"
 
 class SpriteExporter
 {
 public:
-	SpriteExporter( QSharedPointer<Sprite> sprite );
-	virtual ~SpriteExporter() = 0 ;
+	SpriteExporter(QSharedPointer<Sprite> sprite);
 
 	void run();
-
-	virtual void bytesAdded( uint8_t first_byte, uint8_t second_byte ) = 0;
-	virtual void newTile() = 0;
+	virtual void notifySize( int width, int height ) = 0;
+	virtual void notifyValue( uint8_t value ) = 0;
 
 private:
 	QSharedPointer<Sprite> m_sprite;
