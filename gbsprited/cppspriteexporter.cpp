@@ -4,7 +4,7 @@
 #include <QTextStream>
 
 CppSpriteExporter::CppSpriteExporter( QSharedPointer<Sprite> sprite, QString outfile )
-	: SpriteExporter(sprite), m_file(outfile)
+	: GBSpriteExporter(sprite), m_file(outfile)
 {
 	if( m_file.open(QIODevice::ReadWrite) )
 	{
@@ -12,13 +12,13 @@ CppSpriteExporter::CppSpriteExporter( QSharedPointer<Sprite> sprite, QString out
 	}
 }
 
-void CppSpriteExporter::bytesAdded(uint8_t first_byte, uint8_t second_byte)
+void CppSpriteExporter::notifyBytes(uint8_t first_byte, uint8_t second_byte)
 {
 	m_stream << "0x" << QString::number(first_byte, 16)  << ", ";
 	m_stream << "0x" << QString::number(second_byte, 16) << ", ";
 }
 
-void CppSpriteExporter::newTile()
+void CppSpriteExporter::notifyNewTile()
 {
 	m_stream << "\n";
 }

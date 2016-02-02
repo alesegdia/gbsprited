@@ -5,15 +5,15 @@
 #include <QFile>
 #include <QTextStream>
 
-#include "spriteexporter.h"
+#include "gbspriteexporter.h"
 
-class CppSpriteExporter : public SpriteExporter
+class CppSpriteExporter : public GBSpriteExporter
 {
 public:
 	CppSpriteExporter( QSharedPointer<Sprite> sprite, QString outfile );
 
-	void bytesAdded(uint8_t first_byte, uint8_t second_byte) override;
-	void newTile() override;
+	void notifyBytes(uint8_t first_byte, uint8_t second_byte) override;
+	void notifyNewTile() override;
 
 private:
 	QFile m_file;

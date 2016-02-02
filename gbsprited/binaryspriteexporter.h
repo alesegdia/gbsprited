@@ -1,25 +1,18 @@
 #ifndef BINARYSPRITEEXPORTER_H
 #define BINARYSPRITEEXPORTER_H
 
-#include "spriteexporter.h"
+#include "gbspriteexporter.h"
 
 #include <QFile>
 #include <QDataStream>
 
-class BinarySpriteExporter : public SpriteExporter
+class BinarySpriteExporter : public GBSpriteExporter
 {
 public:
 	BinarySpriteExporter( QSharedPointer<Sprite> sprite, QString outfile );
 
-	void bytesAdded(uint8_t first_byte, uint8_t second_byte)
-	{
-		m_stream << first_byte << second_byte;
-	}
-
-	void newTile()
-	{
-
-	}
+	void notifyBytes(uint8_t first_byte, uint8_t second_byte);
+	void notifyNewTile();
 
 private:
 	QFile m_file;
