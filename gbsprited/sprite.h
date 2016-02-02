@@ -8,6 +8,9 @@ class Sprite
 {
 
 public:
+
+	friend class SpriteImporter;
+
 	Sprite();
 
 	/**
@@ -25,6 +28,12 @@ public:
 	 */
 	uint8_t get( int x, int y );
 
+	/**
+	 * @brief plots a pixel at specified position
+	 * @param x coordinate
+	 * @param y coordinate
+	 * @param the pixel value
+	 */
 	void plot( int x, int y, uint8_t value );
 
 	int width();
